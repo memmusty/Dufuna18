@@ -1,0 +1,30 @@
+div{
+    margin: 10px 0;
+}
+fieldset{
+    padding: 30px;
+    border: 2px solid #7B9BA6;
+    width: 30%; 
+}
+body{
+    background-color: #233656;
+    color: #7B9BA6;
+}
+input{
+    border-radius: 4px;
+    height: 20px;
+}
+input:hover{
+    border:2px solid #7B9BA6;
+}
+form{
+    margin: 20px;
+}
+img{
+    opacity: 0.4;
+    position: absolute;
+    top:10%;
+    left:50%;
+    width:633px;
+    height:450.3px;
+}
