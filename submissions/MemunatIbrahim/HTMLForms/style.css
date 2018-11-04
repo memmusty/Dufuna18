@@ -28,3 +28,10 @@ img{
     width:633px;
     height:450.3px;
 }
+button{
+    background-color: #233656;
+    border-radius: 2px;
+    margin-top: 1rem;
+    height: 2rem;
+    color: #7B9BA6;
+}

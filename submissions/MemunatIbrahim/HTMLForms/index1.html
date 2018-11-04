@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Join Us</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <h1>Fill The Form Below to Join Our Community</h1>
+    <form method="POST" action="work.php">
+        <fieldset>
+            <legend>Join Us</legend>
+            <div>
+                <label for="fname">Firstname</label>
+                <input type="text" id="fname" name="fname" />
+            </div>
+            <div>
+                <label for="lname">Lastname</label>
+                <input type="text" name="lname" id="lname"/>
+            </div>
+            <div>
+                <label for="mail">Email Address</label>
+                <input type="email" name="mail" id="mail"/>
+            </div>
+            <div>
+                <label for="pword">Password</label>
+                <input type="password" id="pword" name="pword"/>
+            </div>
+            <div>
+                <label for="cpword">Confirm Password</label>
+                <input type="password" id="cpword" name="cpword" placeholder="  Retype your password"/>
+            </div>
+            <div>
+                <label for="phone">Phone Number</label>
+                <input type="number" id="phone" name="phone"/>
+            </div>
+            <div>
+                <label for="gender">Gender</label>
+                <div id="genders">                    
+                    <input type="radio" id="male" name="gender" value="male"/>
+                    <label for="male">Male</label>
+                    <br/>
+                    <input type="radio" id="female" name="gender" value="female"/>
+                    <label for="female">Female</label>
+                </div>
+            </div>
+            <div>
+                <label for="country">Country</label>
+                <select id="country" name="Country">
+                    <option>Benin Republic</option>
+                    <option>Cameroon</option>
+                    <option>Ghana</option>
+                    <option>Kenya</option>
+                    <option>Nigeria</option>
+                    <option>Tanzania</option>
+                    <option>Togo</option>
+                    <option>Tunisia</option>
+                    <option>Zambia</option>
+                    <option>Zimbabwe</option>
+                </select>
+            </div>
+            <button type="submit" name="submit">Submit</button>
+        </fieldset>
+    </form>
+    <img src="welcome.gif"/>
+</body>
+</html>
