@@ -8,20 +8,26 @@ if(isset($_POST['submit'])){
     $gender=$_POST['gender'];
     $country=$_POST['country'];
     $conn = mysqli_connect('localhost', 'user', '1234', 'registration');
-    // Check that connection exists
-    if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
+    if(!is_numeric($phone)){
+       echo "please enter a valid phone number";
     }
-    $sql = "INSERT INTO members VALUES (null, '$fname', '$lname', '$mail', '$pword','$phone','$gender','$country',null)";
-    $result = mysqli_query($conn, $sql);
-    //Check for errors
-    if (!$result) {
-        die("Error: " . $sql . "<br>" . mysqli_error($conn));
+    else{
+        // Check that connection exists
+        if (!$conn) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
+        $sql = "INSERT INTO members VALUES (null, '$fname', '$lname', '$mail', '$pword','$phone','$gender','$country',null)";
+        $result = mysqli_query($conn, $sql);
+        //Check for errors
+        if (!$result) {
+            die("Error: " . $sql . "<br>" . mysqli_error($conn));
+        }
+        else{        
+         header('Location:success.html');
+        }
+        //Close the connection
+        mysqli_close($conn);
+
     }
-    else{        
-     header('Location:success.html');
-    }
-    //Close the connection
-    mysqli_close($conn);
 }
 ?>
