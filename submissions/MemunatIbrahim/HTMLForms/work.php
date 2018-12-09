@@ -9,7 +9,7 @@ if(isset($_POST['submit'])){
     $country=$_POST['country'];
     $conn = mysqli_connect('localhost', 'user', '1234', 'registration');
     if(!is_numeric($phone)){
-       echo "please enter a valid phone number, go <a href='index.html'> back</a>";
+       echo "please enter a valid phone number";
     }
     else{
         // Check that connection exists
