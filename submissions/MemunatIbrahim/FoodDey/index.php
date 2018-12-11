@@ -1,40 +1,6 @@
 <!DOCTYPE html>
 <html class="no-js">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Restaurant One Page HTML5 Template</title>
-		<meta name="description" content="">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- CSS
-        ================================================ -->
-        <!-- Owl Carousel -->
-		<link rel="stylesheet" href="css/owl.carousel.css">
-        <!-- bootstrap.min css -->
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-        <!-- Font-awesome.min css -->
-		<link rel="stylesheet" href="css/font-awesome.min.css">
-        <!-- Main Stylesheet -->
-        <link rel="stylesheet" href="css/animate.min.css">
-
-		<link rel="stylesheet" href="css/main.css">
-        <!-- Responsive Stylesheet -->
-        <link rel="stylesheet" href="css/responsive.css">
-        <link rel="stylesheet" href="css/style.css">
-        <style>
-            
-        </style>
-		<!-- Js -->
-    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
-    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
-    <script src="js/jquery.nav.js"></script>
-    <script src="js/jquery.sticky.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/wow.min.js"></script>
-    <script src="js/main.js"></script>
-	</head>
+    <?php require 'head.php';?>
 	<body>
 	<!--
 	header-img start 
@@ -97,123 +63,23 @@
                             <h3>Featured <span>Works</span></h3>
                         </div>
                         <div id="owl-example" class="owl-carousel">
-                            <div>
-                                <img class="img-responsive" src="images/slider/1.jpg" alt="">
-                            </div>
-                            <div>
-                                <img class="img-responsive" src="images/slider/2.jpg" alt="">
-                            </div>
-                            <div>
-                                <img class="img-responsive" src="images/slider/3.png" alt="">
-                            </div>
-                            <div>
-                                <img class="img-responsive" src="images/slider/4.jpg" alt="">
-                            </div>
-                            <div>
-                                <img class="img-responsive" src="images/slider/5.jpg" alt="">
-                            </div>
-                            <div>
-                                <img class="img-responsive" src="images/slider/6.jpg" alt="">
-                            </div>
-                            <div>
-                                <img class="img-responsive" src="images/slider/7.jpg" alt="">
-                            </div>
-                            <div>
-                                <img class="img-responsive" src="images/slider/8.jpg" alt="">
-                            </div>
-                            <div>
-                                <img class="img-responsive" src="images/slider/9.jpg" alt="">
-                            </div>
-                        
+                            <?php
+                                require 'db.php';
+                                        $sqql = "select * from food where category_id=4 or category_id=3";
+                                        $rresult = mysqli_query($conn, $sqql);
+                                        while($rrow=mysqli_fetch_array($rresult,MYSQLI_NUM)){
+                                            echo "
+                                            <div>
+                                                <img class='img-responsive' src='data:image/jpag;base64,".base64_encode($rrow[4])."' alt=$rrow[1]>
+                                            </div>";
+                                        }
+                            ?>                        
                         </div>
                     </div>
                 </div><!-- .col-md-12 close -->
             </div><!-- .row close -->
         </div><!-- .container close -->
     </section><!-- slider close -->
-    <!--
-    price start
-    ============================ -->
-    <section id="price">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="block">
-                        <h1 class="heading wow fadeInUp" data-wow-duration="300ms" data-wow-delay="300ms">our <span>MENU</span> the <span>PRICE</span></h1>
-                        <p class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="400ms">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco </p>
-                        <div class="pricing-list">
-                            <div class="title">
-                                <h3>Featured <span>on the week</span></h3>
-                            </div>
-                            <ul>
-                                <li class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="300ms">
-                                    <div class="item">
-                                        <div class="item-title">
-                                            <h2>Pancakes n' Such</h2>
-                                            <div class="border-bottom"></div>
-                                            <span>$ 25.00</span>
-                                        </div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim&&</p>
-                                    </div>
-                                </li>
-                                <li class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="400ms">
-                                    <div class="item">
-                                        <div class="item-title">
-                                            <h2>Homestyle Chicken Pot Pie</h2>
-                                            <div class="border-bottom"></div>
-                                            <span>$ 10.00</span>
-                                        </div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim&&</p>
-                                    </div>
-                                </li>
-                                <li class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="500ms">
-                                    <div class="item">
-                                        <div class="item-title">
-                                            <h2>Cereal, Panecillos y Frutas </h2>
-                                            <div class="border-bottom"></div>
-                                            <span>$ 5.00</span>
-                                        </div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim&&</p>
-                                    </div>
-                                </li>
-                                <li class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="600ms">
-                                    <div class="item">
-                                        <div class="item-title">
-                                            <h2>Meat of Skewers</h2>
-                                            <div class="border-bottom"></div>
-                                            <span>$ 15.00</span>
-                                        </div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim&&</p>
-                                    </div>
-                               </li>
-                                <li class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="700ms">
-                                    <div class="item">
-                                        <div class="item-title">
-                                            <h2>Steak with a Garlic and Parsley Risotto</h2>
-                                            <div class="border-bottom"></div>
-                                            <span>$ 75.00</span>
-                                        </div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim&&</p>
-                                    </div>
-                                </li>
-                                <li class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="800ms">
-                                    <div class="item">
-                                        <div class="item-title">
-                                            <h2>Caesar Salad</h2>
-                                            <div class="border-bottom"></div>
-                                            <span>$ 7.00</span>
-                                        </div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim&&</p>
-                                    </div>
-                                </li>
-                            </ul>
-                            <a class="btn btn-default pull-right wow bounceIn" data-wow-duration="500ms" data-wow-delay="1200ms" href="#" role="button">More Info</a>
-                        </div>
-                    </div>
-                </div><!-- .col-md-12 close -->
-            </div><!-- .row close -->
-        </div><!-- .containe close -->
-    </section><!-- #price close -->
     <!--
     footer  start
     ============================= -->
@@ -226,23 +92,23 @@
                             <h3>Follow <span>US</span></h3>
                             <ul>
                                 <li>
-                                    <a href="#">
+                                    <a href="https://twitter.com/_memunat_">
                                         <i class="fa fa-twitter"></i>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="https://web.facebook.com/memunatj">
                                         <i class="fa fa-facebook"></i>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
+                                    <a href="https://www.instagram.com/memmunat">
                                         <i class="fa fa-instagram"></i>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        <i class="fa fa-pinterest"></i>
+                                    <a href="https://www.linkedin.com/in/memunat-ajoke-ibrahim">
+                                        <i class="fa fa-linkedin"></i>
                                     </a>
                                 </li>
                             </ul>
@@ -289,7 +155,7 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="block">
-                        <p>Copyright &copy; 2014 - All Rights Reserved.Design and Developed By <a href="http://www.themefisher.com">Themefisher</a></p>
+                        <p>Copyright &copy; 2018 - All Rights Reserved. Design and Developed By Memunat</a></p>
                     </div>
                 </div>
             </div>

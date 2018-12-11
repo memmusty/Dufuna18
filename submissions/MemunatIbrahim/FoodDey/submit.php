@@ -5,12 +5,8 @@ if(isset($_POST['register'])){
     $email=$_POST['email'];
     $uname=$_POST['uname'];
     $pword=$_POST['pword'];
-    $conn = mysqli_connect('localhost', 'user', '1234', 'fuudie');
+    require 'db.php';
    
-        // Check that connection exists
-        if (!$conn) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
         $sql = "INSERT INTO user VALUES (null, '$uname', '$fname', '$lname', '$email', '$pword')";
         $result = mysqli_query($conn, $sql);
         //Check for errors
@@ -28,12 +24,8 @@ if(isset($_POST['register'])){
 if(isset($_POST['login'])){
     $uname=$_POST['uname'];
     $pword=$_POST['pword'];
-    $conn = mysqli_connect('localhost', 'user', '1234', 'fuudie');
+    require 'db.php';
    
-        // Check that connection exists
-        if (!$conn) {
-            die("Connection failed: " . mysqli_connect_error());
-        }
         $sql = "select * from user where username='$uname' and password= '$pword'";
         $result = mysqli_query($conn, $sql);
         $row=mysqli_fetch_array($result,MYSQLI_NUM);

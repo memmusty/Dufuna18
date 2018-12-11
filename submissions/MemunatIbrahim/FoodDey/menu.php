@@ -1,47 +1,13 @@
 <!DOCTYPE html>
 <html class="no-js">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Restaurant One Page HTML5 Template</title>
-		<meta name="description" content="">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<!-- CSS
-        ================================================ -->
-        <!-- Owl Carousel -->
-		<link rel="stylesheet" href="css/owl.carousel.css">
-        <!-- bootstrap.min css -->
-		<link rel="stylesheet" href="css/bootstrap.min.css">
-        <!-- Font-awesome.min css -->
-		<link rel="stylesheet" href="css/font-awesome.min.css">
-        <!-- Main Stylesheet -->
-        <link rel="stylesheet" href="css/animate.min.css">
-
-		<link rel="stylesheet" href="css/main.css">
-        <!-- Responsive Stylesheet -->
-        <link rel="stylesheet" href="css/responsive.css">
-        <link rel="stylesheet" href="css/style.css">
-        <style>
-            
-        </style>
-		<!-- Js -->
-    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
-    <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script> -->
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
-    <script src="js/jquery.nav.js"></script>
-    <script src="js/jquery.sticky.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/plugins.js"></script>
-    <script src="js/wow.min.js"></script>
-    <script src="js/main.js"></script>
-	</head>
+    <?php require 'head.php';?>
 	<body>
 	<!--
 	header-img start 
 	============================== -->
     <section id="hero-area">
       <img class="img-responsive" src="images/banner.png" alt="">
-    </section>s
+    </section>
 	<!--
     Header start 
 	============================== -->
@@ -70,12 +36,12 @@
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                               <ul class="nav navbar-nav navbar-right" id="top-nav">
-                                <li><a href="index.php">Home</a></li>
-                                <li><a href="menu.php">menu</a></li>
-                                <li><a href="login.php">login</a></li>
-                                <li><a href="about.php">about us</a></li>
-                                <li><a href="about.php#contact-us">contacts</a></li>
-                                <li><a href="about.php#subscribe">news</a></li>
+                                <li><a href="./index.php">Home</a></li>
+                                <li><a href="./menu.php">menu</a></li>
+                                <li><a href="./login.php">login</a></li>
+                                <li><a href="./about.php">about us</a></li>
+                                <li><a href="./about.php#contact-us">contacts</a></li>
+                                <li><a href="./about.php#subscribe">news</a></li>
                               </ul>
                             </div><!-- /.navbar-collapse -->
                           </div><!-- /.container-fluid -->
@@ -92,76 +58,54 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
+                    <?php
+                        if(isset($_REQUEST['success'])){
+                            echo "<div class='alert alert-success'>
+                            <strong>Item successfully added to cart, view <a href='cartList.php'>your cart here</a>.
+                          </div>";
+                        }
+                        if(isset($_REQUEST['failed'])){
+                            echo "<div class='alert alert-danger'>
+                            <strong>A problem was encountered while adding to cart.
+                          </div>";
+                        }
+                    ?>
                     <div class="block">
                         <h1 class="heading wow fadeInUp" data-wow-duration="300ms" data-wow-delay="300ms">our <span>MENU</span> the <span>PRICE</span></h1>
-                        <p class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="400ms">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco </p>
-                        <div class="pricing-list">
-                            <div class="title">
-                                <h3>Featured <span>on the week</span></h3>
-                            </div>
-                            <ul>
-                                <li class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="300ms">
-                                    <div class="item">
-                                        <div class="item-title">
-                                            <h2>Pancakes n' Such</h2>
-                                            <div class="border-bottom"></div>
-                                            <span>$ 25.00</span>
+                                <?php
+                                    require 'db.php';
+                                    $sql = "select * from category order by name";
+                                    $result = mysqli_query($conn, $sql);
+                                    while($row=mysqli_fetch_array($result,MYSQLI_NUM)){
+                                        echo "
+                            <div class='title'>
+                                        <h3><span>$row[1]</span></h3>
                                         </div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim&&</p>
-                                    </div>
-                                </li>
-                                <li class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="400ms">
-                                    <div class="item">
-                                        <div class="item-title">
-                                            <h2>Homestyle Chicken Pot Pie</h2>
-                                            <div class="border-bottom"></div>
-                                            <span>$ 10.00</span>
-                                        </div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim&&</p>
-                                    </div>
-                                </li>
-                                <li class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="500ms">
-                                    <div class="item">
-                                        <div class="item-title">
-                                            <h2>Cereal, Panecillos y Frutas </h2>
-                                            <div class="border-bottom"></div>
-                                            <span>$ 5.00</span>
-                                        </div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim&&</p>
-                                    </div>
-                                </li>
-                                <li class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="600ms">
-                                    <div class="item">
-                                        <div class="item-title">
-                                            <h2>Meat of Skewers</h2>
-                                            <div class="border-bottom"></div>
-                                            <span>$ 15.00</span>
-                                        </div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim&&</p>
-                                    </div>
-                               </li>
-                                <li class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="700ms">
-                                    <div class="item">
-                                        <div class="item-title">
-                                            <h2>Steak with a Garlic and Parsley Risotto</h2>
-                                            <div class="border-bottom"></div>
-                                            <span>$ 75.00</span>
-                                        </div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim&&</p>
-                                    </div>
-                                </li>
-                                <li class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="800ms">
-                                    <div class="item">
-                                        <div class="item-title">
-                                            <h2>Caesar Salad</h2>
-                                            <div class="border-bottom"></div>
-                                            <span>$ 7.00</span>
-                                        </div>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim&&</p>
-                                    </div>
-                                </li>
+                                    <div class='pricing-list'>";
+                                        $sqql = "select * from food where category_id=$row[0]";
+                                        $rresult = mysqli_query($conn, $sqql);
+                                        echo '
+                                        <ul>';
+                                        while($rrow=mysqli_fetch_array($rresult,MYSQLI_NUM)){
+                                            echo "
+                                            <li class='wow fadeInUp' data-wow-duration='300ms' data-wow-delay='300ms'>
+                                                    <div class='row'>
+                                                    <img src='data:image/jpag;base64,".base64_encode($rrow[4])."' class='col-md-2' style='width:150px; height:100px;'/>
+                                                    <div class='item col-md-10'>
+                                                        <div class='item-title'>
+                                                            <h2>$rrow[1]</h2>
+                                                            <b style='float:right; color: #ff530a; font-size:2rem'> ₦$rrow[5]
+                                                            <a href='cart.php?id=$rrow[0]' style='border:2px solid #ff530a; color: #ff530a; margin:0 1rem' onclick='#' title='Add to Cart'>&plus; </a>
+                                                            </b>
+                                                        </div>
+                                                    <p style='font-size:2rem'>$rrow[3]</p>
+                                                    </div>
+                                                </div>
+                                            </li>";
+                                        }
+                                    }
+                                ?>
                             </ul>
-                            <a class="btn btn-default pull-right wow bounceIn" data-wow-duration="500ms" data-wow-delay="1200ms" href="#" role="button">More Info</a>
                         </div>
                     </div>
                 </div><!-- .col-md-12 close -->
@@ -176,7 +120,7 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="block">
-                        <p>Copyright &copy; 2014 - All Rights Reserved.Design and Developed By <a href="http://www.themefisher.com">Themefisher</a></p>
+                        <p>Copyright &copy; 2018 - All Rights Reserved.Design and Developed By Memunat</a></p>
                     </div>
                 </div>
             </div>

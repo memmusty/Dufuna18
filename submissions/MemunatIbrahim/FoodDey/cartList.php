@@ -1,7 +1,17 @@
+<?php
+session_start();
+require 'db.php';
+?>
 <!DOCTYPE html>
 <html class="no-js">
     <?php require 'head.php';?>
 	<body>
+	<!--
+	header-img start 
+	============================== -->
+    <section id="hero-area">
+      <img class="img-responsive" src="images/banner.png" alt="">
+    </section>
 	<!--
     Header start 
 	============================== -->
@@ -30,12 +40,12 @@
                             <!-- Collect the nav links, forms, and other content for toggling -->
                             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                               <ul class="nav navbar-nav navbar-right" id="top-nav">
-                                <li><a href="index.php">Home</a></li>
-                                <li><a href="menu.php">menu</a></li>
-                                <li><a href="login.php">login</a></li>
-                                <li><a href="about.php">about us</a></li>
-                                <li><a href="about.php#contact-us">contacts</a></li>
-                                <li><a href="about.php#subscribe">news</a></li>
+                                <li><a href='index.php'>Home</a></li>
+                                <li><a href='menu.php'>menu</a></li>
+                                <li><a href='login.php'>login</a></li>
+                                <li><a href='about.php'>about us</a></li>
+                                <li><a href='about.php#contact-us'>contacts</a></li>
+                                <li><a href='about.php#subscribe'>subscribe</a></li>
                               </ul>
                             </div><!-- /.navbar-collapse -->
                           </div><!-- /.container-fluid -->
@@ -45,49 +55,70 @@
             </div><!-- .row close -->
         </div><!-- .container close -->
 	</nav><!-- header close -->
-    <!--
-    about-us start
-    ============================== -->
-    <section id="about-us">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="block">
-                        <img class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="400ms" src="images/cooker-img.png" alt="cooker-img">
-                        <h1 class="heading wow fadeInUp" data-wow-duration="400ms" data-wow-delay="500ms" >About <span>FoodDey</span> Restaurant
-                        </h1>
-                        <p class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="600ms">A Dufuna-Fem Final Project</p>
-                    </div>
-                </div><!-- .col-md-12 close -->
-            </div><!-- .row close -->
-        </div><!-- .containe close -->
-    </section><!-- #call-to-action close -->
-    <!--
-    CONTACT US  start
-    ============================= -->
-    <section id="contact-us">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="block">
-                        <h1 class="heading wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms"><span>CONTACT US</span></h1>
-                        <form>
-                            <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="600ms">
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Write your full name here...">
-                            </div>
-                            <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="800ms">
-                                <input type="text" class="form-control" placeholder="Write your email address here...">
-                            </div>
-                            <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1000ms">
-                                <textarea class="form-control" rows="3" placeholder="Write your message here..."></textarea>
-                            </div>
-                        </form>
-                        <a class="btn btn-default wow bounceIn" data-wow-duration="500ms" data-wow-delay="1300ms" href="#" role="button">send your message</a>
-                    </div>
-                </div><!-- .col-md-12 close -->
-            </div><!-- .row close -->
-        </div><!-- .container close -->
-    </section><!-- #contact-us close -->
+<div class="container">
+                    <?php
+                        if(isset($_REQUEST['success'])){
+                            echo "<div class='alert alert-success'>
+                            <strong>Item successfully removed from cart</a>.
+                          </div>";
+                        }
+                        if(isset($_REQUEST['failed'])){
+                            echo "<div class='alert alert-danger'>
+                            <strong>A problem was encountered while removing from cart.
+                          </div>";
+                        }
+                    ?>
+	<table id="cart" class="table table-hover table-condensed">
+    				<thead>
+						<tr>
+							<th style="width:50%">Product</th>
+							<th style="width:10%">Price</th>
+							<th style="width:8%">Quantity</th>
+							<th style="width:22%" class="text-center">Subtotal</th>
+							<th style="width:10%"></th>
+						</tr>
+					</thead>
+					<tbody>
+                        <?php
+                        $sql = "select * from food";
+                        $result = mysqli_query($conn, $sql);
+                        $count=array_count_values( $_SESSION['cart']);
+                        $sum=0;
+                        while($row=mysqli_fetch_array($result,MYSQLI_NUM)){
+                            if (in_array($row[0], $_SESSION['cart'])) {
+                                $id=$row[0];
+                                echo"<tr>
+                                    <td data-th='Product'>
+                                        <div class='row'>
+                                            <div class='col-sm-2 hidden-xs'><img src='data:image/jpag;base64,".base64_encode($row[4])."' class='img-responsive' style='width:150px; height:60px;'/></div>
+                                            
+                                            <div class='col-sm-10'>
+                                                <h4 class='nomargin'>$row[1]</h4>
+                                                <p>$row[3]</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td data-th='Price'>₦$row[5]</td>
+                                    <td data-th='Quantity'>$count[$id]</td>
+                                    <td data-th='Subtotal' class='text-center'> ₦"; echo $price=$row[5]*$count[$id]; $sum+=$price;echo "</td>
+                                    <td class='actions' data-th=''>
+                                        <a href='remove.php?id=$row[0]'  class='btn btn-danger btn-sm title='Remove from Cart'><i class='fa fa-trash-o'></i></a>					
+                                    </td>
+                                </tr>";
+                            }
+                        }
+                        ?>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td><a href="menu.php" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+							<td colspan="2" class="hidden-xs"></td>
+							<td class="hidden-xs text-center"><strong>Total ₦<?php echo $sum?></strong></td>
+							<td><a href="checout.php" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+						</tr>
+					</tfoot>
+				</table>
+</div>
     <!--
     footer  start
     ============================= -->
@@ -155,31 +186,6 @@
             </div><!-- .row close -->
         </div><!-- .containe close -->
     </section><!-- #footer close -->
-    <!--
-    subscribe start
-    ============================ -->
-    <section id="subscribe">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="block">
-                        <h1 class=" heading wow fadeInUp" data-wow-duration="300ms" data-wow-delay="300ms"> SUBSCRIBE <span>to our</span> NEWSLETTER</h1>
-                        <p class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="400ms">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod </p>
-                        <form class="form-inline">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="Enter your email to subscribe...">
-                                    <div class="input-group-addon">
-                                        <button class="btn btn-default" type="submit">subscribe</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div><!-- .col-md-12 close -->
-            </div><!-- .row close -->
-        </div><!-- .containe close -->
-    </section><!-- #subscribe close -->
     <!--
     footer-bottom  start
     ============================= -->
