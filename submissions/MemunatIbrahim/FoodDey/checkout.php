@@ -1,9 +1,8 @@
-<?php
-require 'db.php';
-?>
 <!DOCTYPE html>
 <html class="no-js">
-    <?php require 'head.php';?>
+    <?php require 'head.php';
+        require 'db.php';
+    ?>
 	<body>
 	<!--
 	header-img start 
@@ -15,27 +14,20 @@ require 'db.php';
     Header start 
 	============================== -->
     <?php include 'nav.php';?>
-<div class="container">
-                    <?php
-                        if(isset($_REQUEST['success'])){
-                            echo "<div class='alert alert-success'>
-                            <strong>Item successfully removed from cart</a>.
-                          </div>";
-                        }
-                        if(isset($_REQUEST['failed'])){
-                            echo "<div class='alert alert-danger'>
-                            <strong>A problem was encountered while removing from cart.
-                          </div>";
-                        }
-                    ?>
-	<table id="cart" class="table table-hover table-condensed">
+    <!--
+    check out  start
+    ============================= -->
+    <section id="check-out">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <h1 class="heading wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms"><span>Your Order</span></h1>
+	            <table id="cart" class="table table-hover table-condensed">
     				<thead>
 						<tr>
 							<th style="width:50%">Product</th>
-							<th style="width:10%">Price</th>
 							<th style="width:8%">Quantity</th>
 							<th style="width:22%" class="text-center">Subtotal</th>
-							<th style="width:10%"></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -50,20 +42,13 @@ require 'db.php';
                                 echo"<tr>
                                     <td data-th='Product'>
                                         <div class='row'>
-                                            <div class='col-sm-2 hidden-xs'><img src='data:image/jpag;base64,".base64_encode($row[4])."' class='img-responsive' style='width:150px; height:60px;'/></div>
-                                            
                                             <div class='col-sm-10'>
                                                 <h4 class='nomargin'>$row[1]</h4>
-                                                <p>$row[3]</p>
                                             </div>
                                         </div>
                                     </td>
-                                    <td data-th='Price'>₦$row[5]</td>
                                     <td data-th='Quantity'>$count[$id]</td>
                                     <td data-th='Subtotal' class='text-center'> ₦"; echo $price=$row[5]*$count[$id]; $sum+=$price;echo "</td>
-                                    <td class='actions' data-th=''>
-                                        <a href='remove.php?id=$row[0]'  class='btn btn-danger btn-sm title='Remove from Cart'><i class='fa fa-trash-o'></i></a>					
-                                    </td>
                                 </tr>";
                             }
                         }
@@ -71,14 +56,48 @@ require 'db.php';
 					</tbody>
 					<tfoot>
 						<tr>
-							<td><a href="menu.php" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
 							<td colspan="2" class="hidden-xs"></td>
-							<td class="hidden-xs text-center"><strong>Total ₦<?php echo $sum?></strong></td>
-							<td><a href="check.php" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+							<td class="hidden-xs text-center" colspam=3><strong>Total ₦<?php echo $sum;?></strong></td>
 						</tr>
 					</tfoot>
 				</table>
-</div>
+                </div><!-- .col-md-12 close -->
+                <div class="col-md-5 col-md-push-2">
+                        <h1 class="heading wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms"><span>Check Out</span></h1>
+                        <form method="POST" action="order.php">
+                            <div class="form-group">
+                                <label for="fname">Phone Number</label>
+                                <input type="tel" class="form-control" id="number" name="number" placeholder="Write your phone number here..." required>
+                            </div>
+                            <div class="form-group">
+                                <label for="fname">Street Address</label>
+                                <input type="text" class="form-control" id="street" name="street" placeholder="Write your Street Address here..." required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lname">Town/City</label>
+                                <input type="text" class="form-control" id="city" name="city" placeholder="Write your Town/City here..." required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Country</label>
+                                <input type="text" class="form-control" id="country" name="country"  placeholder="Write your Country here..." required>
+                            </div>
+                            <input type="hidden" class="form-control" id="total" name="total"  value="<?php echo $sum;?>" required>                            
+                            <?php 
+                            //check if the cart is empty
+                                session_start();
+                                if($sum>0){
+                                    echo "     
+                                    <div>
+                                    <button class='mybtn' type='submit' id='checkout' name='checkout' color='#ff530a'>Check Out</button>
+                                    </div>";
+                                }
+                            ?>
+                        </form>
+                </div><!-- .col-md-12 close -->
+                
+            </div><!-- .row close -->
+        </div><!-- .container close -->
+    </section><!-- #check out close -->
     <!--
     footer  start
     ============================= -->

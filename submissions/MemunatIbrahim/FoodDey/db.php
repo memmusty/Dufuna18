@@ -1,4 +1,5 @@
 <?php
+    //connects to the database
     $conn = mysqli_connect('localhost', 'user', '1234', 'FoodDey');
 
         // Check that connection exists

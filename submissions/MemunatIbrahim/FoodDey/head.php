@@ -35,6 +35,8 @@
     <script src="js/main.js"></script>
     </head>
     <?php
+    //creates session
     session_start();
+    //create cart array
     $_SESSION['cart']=isset($_SESSION['cart']) ? $_SESSION['cart'] : array();
     ?>

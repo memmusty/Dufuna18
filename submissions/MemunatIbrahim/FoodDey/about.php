@@ -5,46 +5,7 @@
 	<!--
     Header start 
 	============================== -->
-	<nav id="navigation">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="block">
-                        <nav class="navbar navbar-default">
-                          <div class="container-fluid">
-                            <!-- Brand and toggle get grouped for better mobile display -->
-                            <div class="navbar-header">
-                              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                              </button>
-                                  <a class="navbar-brand" href="index.php">
-                                    <!--<img src="images/logo.png" alt="Logo">-->
-                                    <h1>FoodDey</h1>
-                                  </a>
-
-                            </div>
-
-                            <!-- Collect the nav links, forms, and other content for toggling -->
-                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                              <ul class="nav navbar-nav navbar-right" id="top-nav">
-                                <li><a href="index.php">Home</a></li>
-                                <li><a href="menu.php">menu</a></li>
-                                <li><a href="login.php">login</a></li>
-                                <li><a href="about.php">about us</a></li>
-                                <li><a href="about.php#contact-us">contacts</a></li>
-                                <li><a href="about.php#subscribe">news</a></li>
-                              </ul>
-                            </div><!-- /.navbar-collapse -->
-                          </div><!-- /.container-fluid -->
-                        </nav>
-                    </div>
-                </div><!-- .col-md-12 close -->
-            </div><!-- .row close -->
-        </div><!-- .container close -->
-	</nav><!-- header close -->
+    <?php include 'nav.php';?>
     <!--
     about-us start
     ============================== -->
@@ -66,23 +27,37 @@
     CONTACT US  start
     ============================= -->
     <section id="contact-us">
-        <div class="container">
             <div class="row">
                 <div class="col-md-12">
                     <div class="block">
                         <h1 class="heading wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms"><span>CONTACT US</span></h1>
-                        <form>
+        <div class="container">
+            <?php
+                if(isset($_REQUEST["success"])){
+                    echo "<div class='alert alert-success'>
+                    <strong>Message sent successfully!</strong>
+                  </div>";
+                }
+                if(isset($_REQUEST['error'])){
+                    echo "<div class='alert alert-danger'>
+                    <strong>Message could not be sent.</strong>
+                  </div>";
+                }
+            ?>
+                        <form  method="POST" action="feedback.php">
                             <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="600ms">
-                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Write your full name here...">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Write your full name here...">
                             </div>
                             <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="800ms">
-                                <input type="text" class="form-control" placeholder="Write your email address here...">
+                                <input type="email" class="form-control" id="email" name="email"  placeholder="Write your email address here...">
                             </div>
                             <div class="form-group wow fadeInDown" data-wow-duration="500ms" data-wow-delay="1000ms">
-                                <textarea class="form-control" rows="3" placeholder="Write your message here..."></textarea>
+                                <textarea class="form-control" rows="3"  id="message" name="message" placeholder="Write your message here..."></textarea>
+                            </div>
+                            <div>
+                                <button class="mybtn" type="submit" id="submit" name="submit" color="#ff530a">Send</button>
                             </div>
                         </form>
-                        <a class="btn btn-default wow bounceIn" data-wow-duration="500ms" data-wow-delay="1300ms" href="#" role="button">send your message</a>
                     </div>
                 </div><!-- .col-md-12 close -->
             </div><!-- .row close -->
@@ -156,31 +131,6 @@
         </div><!-- .containe close -->
     </section><!-- #footer close -->
     <!--
-    subscribe start
-    ============================ -->
-    <section id="subscribe">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="block">
-                        <h1 class=" heading wow fadeInUp" data-wow-duration="300ms" data-wow-delay="300ms"> SUBSCRIBE <span>to our</span> NEWSLETTER</h1>
-                        <p class="wow fadeInUp" data-wow-duration="300ms" data-wow-delay="400ms">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod </p>
-                        <form class="form-inline">
-                            <div class="form-group">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="exampleInputAmount" placeholder="Enter your email to subscribe...">
-                                    <div class="input-group-addon">
-                                        <button class="btn btn-default" type="submit">subscribe</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div><!-- .col-md-12 close -->
-            </div><!-- .row close -->
-        </div><!-- .containe close -->
-    </section><!-- #subscribe close -->
-    <!--
     footer-bottom  start
     ============================= -->
     <footer id="footer-bottom">
@@ -188,7 +138,7 @@
             <div class="row">
                 <div class="col-md-12 col-sm-12">
                     <div class="block">
-                        <p>Copyright &copy; 2018 - All Rights Reserved. Design and Developed By Memunat</a></p>
+                        <p>Copyright &copy; 2018 - All Rights Reserved.</a></p>
                     </div>
                 </div>
             </div>
