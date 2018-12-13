@@ -25,7 +25,7 @@
 	            <table id="cart" class="table table-hover table-condensed">
     				<thead>
 						<tr>
-							<th style="width:50%">Product</th>
+							<th style="width:50%">Food</th>
 							<th style="width:8%">Quantity</th>
 							<th style="width:22%" class="text-center">Subtotal</th>
 						</tr>
@@ -40,7 +40,7 @@
                             if (in_array($row[0], $_SESSION['cart'])) { //check if a particular food is in the cart and display it on the cartlist if it is
                                 $id=$row[0];
                                 echo"<tr>
-                                    <td data-th='Product'>
+                                    <td data-th='Food'>
                                         <div class='row'>
                                             <div class='col-sm-10'>
                                                 <h4 class='nomargin'>$row[1]</h4>

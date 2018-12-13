@@ -31,7 +31,7 @@ require 'db.php';
 	<table id="cart" class="table table-hover table-condensed">
     				<thead>
 						<tr>
-							<th style="width:50%">Product</th>
+							<th style="width:50%">Food</th>
 							<th style="width:10%">Price</th>
 							<th style="width:8%">Quantity</th>
 							<th style="width:22%" class="text-center">Subtotal</th>
@@ -48,7 +48,7 @@ require 'db.php';
                             if (in_array($row[0], $_SESSION['cart'])) { //check if a particular food is in the cart and display it on the cartlist if it is
                                 $id=$row[0];
                                 echo"<tr>
-                                    <td data-th='Product'>
+                                    <td data-th='Food'>
                                         <div class='row'>
                                             <div class='col-sm-2 hidden-xs'><img src='data:image/jpag;base64,".base64_encode($row[4])."' class='img-responsive' style='width:150px; height:60px;'/></div>
                                             

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 12, 2018 at 03:41 PM
+-- Generation Time: Dec 13, 2018 at 10:48 PM
 -- Server version: 5.6.37
 -- PHP Version: 5.6.31
 
@@ -171,30 +171,17 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `country` text NOT NULL,
   `total` int(11) NOT NULL,
   `resolved` tinyint(1) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `orders`
 --
 
 INSERT INTO `orders` (`id`, `created_by`, `customer_id`, `number`, `street`, `city`, `country`, `total`, `resolved`) VALUES
-(7, '2018-12-12 15:07:25', 1, '', '10, Alhaji Shehu Close, Mafoluku', 'Oshodi', 'Nigeria', 800, 1),
-(8, '0000-00-00 00:00:00', 1, '', '10, Alhaji Shehu Close', 'Oshodi', 'Nigeria', 800, 0),
-(9, '0000-00-00 00:00:00', 1, '', '14, Dapo Sholanke Close', 'Lekki Pahse1', 'Nigeria', 800, 0),
-(10, '2018-12-12 10:50:09', 1, '', '14, Dapo Sholanke Close', 'Lekki Pahse1', 'Nigeria', 800, 0),
-(11, '2018-12-12 10:57:41', 1, '', '14, Dapo Sholanke Close', 'Lekki Pahse1', 'Nigeria', 800, 0),
-(12, '2018-12-12 10:58:34', 1, '', '14, Dapo Sholanke Close', 'Lekki Pahse1', 'Nigeria', 800, 0),
-(13, '2018-12-12 10:59:24', 1, '', '14, Dapo Sholanke Close', 'Lekki Pahse1', 'Nigeria', 800, 0),
-(14, '2018-12-12 11:00:31', 1, '', '14, Dapo Sholanke Close', 'Lekki Pahse1', 'Nigeria', 800, 0),
-(15, '2018-12-12 15:12:49', 1, '', '14, Dapo Sholanke Close', 'Lekki Pahse1', 'Nigeria', 800, 1),
-(16, '2018-12-12 11:04:17', 1, '', '14, Dapo Sholanke Close', 'Lekki Pahse1', 'Nigeria', 800, 0),
-(17, '2018-12-12 15:08:16', 1, '', '14, Dapo Sholanke Close', 'Lekki Pahse1', 'Nigeria', 800, 1),
-(18, '2018-12-12 11:10:37', 1, '', '14, Dapo Sholanke Close', 'Lekki Pahse1', 'Nigeria', 800, 0),
-(19, '2018-12-12 11:11:54', 1, '', '14, Dapo Sholanke Close', 'Lekki Pahse1', 'Nigeria', 800, 0),
-(20, '2018-12-12 11:31:20', 2, '', '655 Bradford ST APT 632', 'Redwood City', 'United States', 400, 0),
 (21, '2018-12-12 12:47:54', 6, '08175873064', '10', 'Oshodi', 'Nigeria', 800, 0),
 (22, '2018-12-12 15:14:27', 6, '08175873064', '10, Alhaji Shehu Close, Mafoluku', 'Oshodi', 'Nigeria', 2400, 1),
-(23, '2018-12-12 14:43:39', 6, '08175873064', '10, Alhaji Shehu Close, Mafoluku', 'Oshodi', 'Nigeria', 1000, 0);
+(23, '2018-12-12 14:43:39', 6, '08175873064', '10, Alhaji Shehu Close, Mafoluku', 'Oshodi', 'Nigeria', 1000, 0),
+(24, '2018-12-12 17:39:06', 6, '08175873064', '10, Alhaji Shehu Close, Mafoluku', 'Oshodi', 'Nigeria', 1100, 1);
 
 -- --------------------------------------------------------
 
@@ -208,30 +195,23 @@ CREATE TABLE IF NOT EXISTS `order_details` (
   `food_id` int(11) NOT NULL,
   `quantity` int(10) NOT NULL,
   `sub_total` double(6,2) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `order_details`
 --
 
 INSERT INTO `order_details` (`id`, `order_id`, `food_id`, `quantity`, `sub_total`) VALUES
-(1, 17, 1, 0, 400.00),
-(2, 17, 12, 0, 100.00),
-(3, 17, 25, 0, 300.00),
-(4, 18, 1, 0, 400.00),
-(5, 18, 12, 0, 100.00),
-(6, 18, 25, 0, 300.00),
-(7, 19, 1, 0, 400.00),
-(8, 19, 12, 0, 100.00),
-(9, 19, 25, 0, 300.00),
-(10, 20, 2, 0, 400.00),
 (11, 21, 2, 0, 800.00),
 (12, 22, 1, 0, 1200.00),
 (13, 22, 2, 0, 800.00),
 (14, 22, 11, 0, 100.00),
 (15, 22, 20, 0, 300.00),
 (16, 23, 1, 2, 800.00),
-(17, 23, 15, 1, 200.00);
+(17, 23, 15, 1, 200.00),
+(18, 24, 1, 1, 400.00),
+(19, 24, 12, 1, 100.00),
+(20, 24, 25, 2, 600.00);
 
 -- --------------------------------------------------------
 
@@ -253,12 +233,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `firstname`, `lastname`, `email`, `password`) VALUES
-(1, 'memmu', 'Memunat', 'Ibrahim', '', 'password'),
-(2, 'b_allen', 'Bayo', 'Allen', '', 'secret'),
-(3, 'b_allen', 'Bayo', 'Allen', '', 'secret'),
-(4, 'memmu', 'MEMUNAT', 'IBRAHIM', '', 'SECRET'),
-(5, 'mem', 'MEMUNAT', 'IBRAHIM', '', 'SE'),
-(6, 'meme', 'MEMUNAT', 'IBRAHIM', 'memunati@gmail.com', 'EFGT');
+(6, 'meme', 'MEMUNAT', 'IBRAHIM', 'memunati@gmail.com', 'PASSWORD');
 
 --
 -- Indexes for dumped tables
@@ -338,12 +313,12 @@ ALTER TABLE `food`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `user`
 --
